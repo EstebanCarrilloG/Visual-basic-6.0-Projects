@@ -136,7 +136,7 @@ Begin VB.Form Form1
       Top             =   6360
       Width           =   5295
    End
-   Begin VB.Timer juego 
+   Begin VB.Timer gameTimer 
       Enabled         =   0   'False
       Interval        =   500
       Left            =   5880
@@ -636,9 +636,13 @@ Private Sub Form_Load()
     
 End Sub
 
-Private Sub juego_Timer()
+Private Sub gameInfo_Click()
+
+End Sub
+
+Private Sub gameTimer_Timer()
     
-    letterInput = InputBox("Ingrese una letra, RECUERDE QUE SOLO SE ADMITEN LETRAS MAYUSCULAS.", "Ingreso", "", 0, 0)
+    letterInput = InputBox("Ingrese una letra.", "Ingreso", "", 0, 0)
     
     If letterInput <> "" Then
         For i = 1 To wordLength
@@ -704,7 +708,7 @@ Private Sub juego_Timer()
     
     If successes = wordLength Then
         
-        juego.Enabled = False
+        gameTimer.Enabled = False
         MsgBox "Felicidades, ganaste!!!"
         gameInfo.Caption = "Ganador!!"
         word = ""
@@ -713,7 +717,7 @@ Private Sub juego_Timer()
     End If
     
     If errors = 6 Then
-        juego.Enabled = False
+        gameTimer.Enabled = False
         MsgBox "Perdiste"
         gameInfo.Caption = "La palabra era: " & word
         word = ""
@@ -752,7 +756,7 @@ Private Sub play_Click()
             wordInputFrame.Visible = False
             wordViewFrame.Visible = True
             gameInfo.Caption = "Comienza el juego!"
-            juego.Enabled = True
+            gameTimer.Enabled = True
             
             For i = 0 To wordLength - 1
                 letterContainer(i).Visible = True
