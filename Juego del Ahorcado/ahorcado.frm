@@ -616,7 +616,7 @@ Function verifyKey(Tecla_Presionada)
     
     Dim allowedKeys As String
     
-    allowedKeys = "ABCDEFGHIJKLMNÃ‘OPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" & Chr(vbKeyBack)
+    allowedKeys = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz" & Chr(vbKeyBack)
     
     If InStr(1, allowedKeys, Chr(Tecla_Presionada)) Then
         verifyKey = Tecla_Presionada
@@ -634,10 +634,6 @@ Private Sub Form_Load()
     
     gameInfo.Caption = "Ingrese una palabra y presione Jugar"
     
-End Sub
-
-Private Sub gameInfo_Click()
-
 End Sub
 
 Private Sub gameTimer_Timer()
@@ -746,7 +742,7 @@ Private Sub play_Click()
         
     Else
         
-        If (wordLength < 5) Then
+        If (wordLength < 4) Then
             gameInfo.Caption = "Error: Palabra muy corta"
         ElseIf wordLength > 13 Then
             gameInfo.Caption = "Error: Superaste el numero de letras permitidas"
