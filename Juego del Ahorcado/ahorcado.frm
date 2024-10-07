@@ -616,7 +616,7 @@ Function verifyKey(Tecla_Presionada)
     
     Dim allowedKeys As String
     
-    allowedKeys = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" & Chr(vbKeyBack)
+    allowedKeys = "ABCDEFGHIJKLMNÃ‘OPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" & Chr(vbKeyBack)
     
     If InStr(1, allowedKeys, Chr(Tecla_Presionada)) Then
         verifyKey = Tecla_Presionada
