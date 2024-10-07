@@ -616,7 +616,7 @@ Function verifyKey(Tecla_Presionada)
     
     Dim allowedKeys As String
     
-    allowedKeys = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" & Chr(vbKeyBack)
+    allowedKeys = "ABCDEFGHIJKLMNÃ‘OPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" & Chr(vbKeyBack)
     
     If InStr(1, allowedKeys, Chr(Tecla_Presionada)) Then
         verifyKey = Tecla_Presionada
@@ -638,7 +638,7 @@ End Sub
 
 Private Sub juego_Timer()
     
-    letterInput = InputBox("Ingrese una letra, RECUERDE QUE SOLO SE ADMITEN LETRAS MAYUSCULAS.", "Ingreso", "", 0, 0)
+    letterInput = InputBox("Ingrese una letra.", "Ingreso", "", 0, 0)
     
     If letterInput <> "" Then
         For i = 1 To wordLength
