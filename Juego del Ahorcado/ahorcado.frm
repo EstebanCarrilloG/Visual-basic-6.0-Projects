@@ -27,7 +27,7 @@ Begin VB.Form Form1
       TabIndex        =   20
       Top             =   1440
       Width           =   5295
-      Begin VB.CommandButton vj 
+      Begin VB.CommandButton playAgain 
          Caption         =   "VOLVER A JUGAR"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -45,24 +45,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   5055
       End
-      Begin VB.Label infoNdigit 
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   120
-         TabIndex        =   23
-         Top             =   480
-         Width           =   5055
-      End
-      Begin VB.Label Estado 
+      Begin VB.Label gameInfo 
          BackColor       =   &H00FFFFFF&
          Caption         =   "DFGFDGFD"
          BeginProperty Font 
@@ -81,7 +64,7 @@ Begin VB.Form Form1
          Width           =   5055
       End
    End
-   Begin VB.Frame ilp 
+   Begin VB.Frame wordInputFrame 
       BackColor       =   &H00E0E0E0&
       Caption         =   "INGRESO"
       BeginProperty Font 
@@ -98,7 +81,7 @@ Begin VB.Form Form1
       TabIndex        =   17
       Top             =   360
       Width           =   5295
-      Begin VB.TextBox palabra 
+      Begin VB.TextBox wordTextBox 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   24
@@ -114,7 +97,7 @@ Begin VB.Form Form1
          Top             =   360
          Width           =   3735
       End
-      Begin VB.CommandButton start 
+      Begin VB.CommandButton play 
          BackColor       =   &H00FFFFFF&
          Caption         =   "JUGAR"
          BeginProperty Font 
@@ -134,7 +117,7 @@ Begin VB.Form Form1
          Width           =   1215
       End
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton close 
       BackColor       =   &H00FFFFFF&
       Caption         =   "SALIR"
       BeginProperty Font 
@@ -159,7 +142,7 @@ Begin VB.Form Form1
       Left            =   5880
       Top             =   6480
    End
-   Begin VB.Frame pbra 
+   Begin VB.Frame wordViewFrame 
       BackColor       =   &H00E0E0E0&
       Caption         =   "PALABRA"
       BeginProperty Font 
@@ -176,7 +159,7 @@ Begin VB.Form Form1
       TabIndex        =   1
       Top             =   360
       Width           =   5295
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -197,7 +180,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -218,7 +201,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -239,7 +222,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -260,7 +243,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -281,7 +264,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -302,7 +285,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -323,7 +306,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -344,7 +327,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -365,7 +348,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -386,7 +369,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -407,7 +390,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -428,7 +411,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -449,7 +432,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   375
       End
-      Begin VB.TextBox J 
+      Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          Enabled         =   0   'False
@@ -488,16 +471,6 @@ Begin VB.Form Form1
       TabIndex        =   0
       Top             =   2280
       Width           =   5295
-      Begin VB.Line N11 
-         BorderColor     =   &H0080C0FF&
-         BorderStyle     =   3  'Dot
-         BorderWidth     =   5
-         Visible         =   0   'False
-         X1              =   3960
-         X2              =   4440
-         Y1              =   1800
-         Y2              =   1800
-      End
       Begin VB.Shape N5 
          BorderColor     =   &H000000FF&
          FillColor       =   &H000000FF&
@@ -529,7 +502,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   135
       End
-      Begin VB.Line N10 
+      Begin VB.Line rightLeg 
          BorderWidth     =   10
          Visible         =   0   'False
          X1              =   4320
@@ -537,7 +510,7 @@ Begin VB.Form Form1
          Y1              =   2520
          Y2              =   3480
       End
-      Begin VB.Line N9 
+      Begin VB.Line leftLeg 
          BorderWidth     =   10
          Visible         =   0   'False
          X1              =   4080
@@ -545,7 +518,7 @@ Begin VB.Form Form1
          Y1              =   2400
          Y2              =   3480
       End
-      Begin VB.Line N8 
+      Begin VB.Line rightArm 
          BorderWidth     =   10
          Visible         =   0   'False
          X1              =   4560
@@ -553,7 +526,7 @@ Begin VB.Form Form1
          Y1              =   1920
          Y2              =   2520
       End
-      Begin VB.Line N7 
+      Begin VB.Line leftArm 
          BorderWidth     =   10
          Visible         =   0   'False
          X1              =   3840
@@ -561,7 +534,7 @@ Begin VB.Form Form1
          Y1              =   1920
          Y2              =   2520
       End
-      Begin VB.Shape N6 
+      Begin VB.Shape chest 
          FillStyle       =   0  'Solid
          Height          =   975
          Left            =   3840
@@ -570,7 +543,7 @@ Begin VB.Form Form1
          Visible         =   0   'False
          Width           =   735
       End
-      Begin VB.Shape N2 
+      Begin VB.Shape head 
          FillStyle       =   0  'Solid
          Height          =   855
          Left            =   3720
@@ -578,16 +551,6 @@ Begin VB.Form Form1
          Top             =   960
          Visible         =   0   'False
          Width           =   975
-      End
-      Begin VB.Line N1 
-         BorderColor     =   &H0080C0FF&
-         BorderStyle     =   3  'Dot
-         BorderWidth     =   5
-         Visible         =   0   'False
-         X1              =   4200
-         X2              =   4200
-         Y1              =   600
-         Y2              =   1800
       End
       Begin VB.Line Line1 
          BorderWidth     =   15
@@ -617,6 +580,16 @@ Begin VB.Form Form1
          Top             =   3360
          Width           =   2175
       End
+      Begin VB.Shape rope 
+         BackColor       =   &H80000001&
+         BorderColor     =   &H0080C0FF&
+         FillColor       =   &H0080C0FF&
+         FillStyle       =   0  'Solid
+         Height          =   855
+         Left            =   4200
+         Top             =   600
+         Width           =   105
+      End
    End
    Begin VB.Shape Shape5 
       Height          =   6855
@@ -630,236 +603,180 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim CANT As Integer
-Dim I As Integer
-Dim B As Integer
-Dim XX As Integer
-Dim PA As String
-Dim LE As String
-Dim LE2 As String
-Dim P As Integer
-Dim G As Integer
-Dim N As Integer
+Dim wordLength As Integer
+Dim i As Integer
+Dim isLetterInWord As Boolean
+Dim word As String
+Dim letterInput As String
+Dim letterInWord As String
+Dim successes As Integer
+Dim errors As Integer
 
-Private Sub Command1_Click()
-End
-End Sub
-
-
-Function Verificar_Tecla(Tecla_Presionada)
+Function verifyKey(Tecla_Presionada)
     
+    Dim allowedKeys As String
     
-Dim Teclas As String
+    allowedKeys = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" & Chr(vbKeyBack)
     
-    
-    Teclas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" & Chr(vbKeyBack)
-    
-    If InStr(1, Teclas, Chr(Tecla_Presionada)) Then
-        
-        Verificar_Tecla = Tecla_Presionada
+    If InStr(1, allowedKeys, Chr(Tecla_Presionada)) Then
+        verifyKey = Tecla_Presionada
     Else
-        
-        Verificar_Tecla = 0
+        verifyKey = 0
     End If
     
-
 End Function
+
+Private Sub close_Click()
+    End
+End Sub
+
 Private Sub Form_Load()
-
-    Estado.Caption = "Ingrese una palabra y presione Jugar"
-
+    
+    gameInfo.Caption = "Ingrese una palabra y presione Jugar"
+    
 End Sub
 
 Private Sub juego_Timer()
-
-
-  I = 0
-  N = 0
-
-  Do While I < CANT + 100
     
-    LE = InputBox("INGRESE UNA LETRA, RECUERDE QUE SOLO SE ADMITEN LETRAS MAYUSCULAS.", "Ingreso", "", 0, 0)
-    XX = 0
+    letterInput = InputBox("Ingrese una letra, RECUERDE QUE SOLO SE ADMITEN LETRAS MAYUSCULAS.", "Ingreso", "", 0, 0)
     
-      For B = 1 To CANT
-      
-        LE2 = Mid(PA, B, 1)
-        
-         If LE = LE2 Then
-         
-            Estado.Caption = "Letra correcta: " & LE
+    If letterInput <> "" Then
+        For i = 1 To wordLength
             
-               Select Case B
-               
-                 Case 1
-                   J(0).Text = LE
-                 Case 2
-                   J(1).Text = LE
-                 Case 3
-                   J(2).Text = LE
-                 Case 4
-                   J(3).Text = LE
-                 Case 5
-                   J(4).Text = LE
-                 Case 6
-                   J(5).Text = LE
-                 Case 7
-                   J(6).Text = LE
-                 Case 8
-                   J(7).Text = LE
-                 Case 9
-                   J(8).Text = LE
-                 Case 10
-                   J(9).Text = LE
-                 Case 11
-                   J(10).Text = LE
-                 Case 12
-                   J(11).Text = LE
-                 Case 13
-                   J(12).Text = LE
-                 Case 14
-                   J(13).Text = LE
-
-               End Select
-               
-            XX = 1
+            letterInWord = Mid(word, i, 1)
             
-         End If
-      Next B
-
-
-      If XX = 0 Then
-      
-        N = N + 1
-        Estado.Caption = "Letra incorrecta: " & LE
+            If UCase(letterInput) = UCase(letterInWord) Then
+                
+                isLetterInWord = True
+                gameInfo.Caption = "Letra correcta: " & letterInput
+                
+                Select Case i
+                    
+                    Case i
+                        letterContainer(i - 1).Text = UCase(letterInput)
+                End Select
+                
+            Else
+                isLetterInWord = False
+            End If
+            
+        Next
         
-      End If
-        
-      Select Case N
-      
-       Case 1
-         N1.Visible = True
-         N11.Visible = True
-       Case 2
-         N2.Visible = True
-       Case 3
-         N6.Visible = True
-       Case 4
-         N7.Visible = True
-       Case 5
-         N8.Visible = True
-       Case 6
-         N9.Visible = True
-       Case 7
-         N10.Visible = True
-    
-      End Select
-    
-      G = 0
-      
-      For P = 0 To CANT - 1
-      
-        If J(P) <> "" Then
-    
-          G = G + 1
+        If isLetterInWord = False Then
+            
+            errors = errors + 1
+            gameInfo.Caption = "Letra incorrecta: " & letterInput
+            
+            Select Case errors
+                
+                Case 1
+                    rope.Visible = True
+                    head.Visible = True
+                Case 2
+                    chest.Visible = True
+                Case 3
+                    leftArm.Visible = True
+                Case 4
+                    rightArm.Visible = True
+                Case 5
+                    leftLeg.Visible = True
+                Case 6
+                    rightLeg.Visible = True
+                    
+            End Select
+            
         End If
-      Next P
-    
-      If G = CANT Then
-      
-        juego.Enabled = False
-        MsgBox "Ganaste"
-        Estado.Caption = ""
-        PA = ""
-        I = CANT + 100
-        vj.Visible = True
         
-      End If
+    Else
+        gameInfo.Caption = "Error: Ingrese una letra"
+        
+    End If
     
+    successes = 0
     
+    For i = 0 To wordLength - 1
+        
+        If letterContainer(i) <> "" Then
+            
+            successes = successes + 1
+        End If
+    Next
     
-      If N = 8 Then
+    If successes = wordLength Then
+        
+        juego.Enabled = False
+        MsgBox "Felicidades, ganaste!!!"
+        gameInfo.Caption = "Ganador!!"
+        word = ""
+        playAgain.Visible = True
+        
+    End If
+    
+    If errors = 6 Then
         juego.Enabled = False
         MsgBox "Perdiste"
-        Estado.Caption = "PALABRA INGRESADA: " & PA
-        PA = ""
-        I = CANT + 100
-        vj.Visible = True
-      End If
+        gameInfo.Caption = "La palabra era: " & word
+        word = ""
+        playAgain.Visible = True
+    End If
     
-    
-      I = I + 1
-  
-  Loop
-
 End Sub
 
-Private Sub palabra_KeyPress(KeyAscii As Integer)
-KeyAscii = Verificar_Tecla(KeyAscii)
-
+Private Sub wordTextBox_KeyPress(KeyAscii As Integer)
+    KeyAscii = verifyKey(KeyAscii)
+    
 End Sub
 
-Private Sub start_Click()
-
- For I = 0 To 13
-  J(I).Text = ""
-  Next I
-
- PA = palabra.Text
- CANT = Len(PA)
+Private Sub play_Click()
     
- 
- If (PA = "") Then
- 
-  Estado.Caption = "Ingrese una palabra."
-  
- Else
- 
-  If (CANT < 4) Then
-    Estado.Caption = "Palabra muy corta"
-    ElseIf CANT > 13 Then
-    Estado.Caption = "Superaste el numero de letras permitidas"
-    CANT = 0
+    For i = 0 To 13
+        letterContainer(i).Text = ""
+    Next i
     
-  Else
-  
-    infoNdigit.Caption = "La palabra ingresada tiene " & CANT & " letras"
-    ilp.Visible = False
-    pbra.Visible = True
-    Estado.Caption = "Comienza el juego"
-    juego.Enabled = True
+    word = wordTextBox.Text
+    wordLength = Len(word)
     
-    For X = 0 To CANT - 1
-    J(X).Visible = True
-    
-    Next
-                           
-  End If
- End If
-
-
+    If (word = "") Then
+        
+        gameInfo.Caption = "Error: Ingrese una palabra."
+        
+    Else
+        
+        If (wordLength < 5) Then
+            gameInfo.Caption = "Error: Palabra muy corta"
+        ElseIf wordLength > 13 Then
+            gameInfo.Caption = "Error: Superaste el numero de letras permitidas"
+            wordLength = 0
+        Else
+            
+            wordInputFrame.Visible = False
+            wordViewFrame.Visible = True
+            gameInfo.Caption = "Comienza el juego!"
+            juego.Enabled = True
+            
+            For i = 0 To wordLength - 1
+                letterContainer(i).Visible = True
+                
+            Next i
+            
+        End If
+    End If
 End Sub
 
-
-Private Sub vj_Click()
-
-    palabra.Text = ""
-    ilp.Visible = True
-    vj.Visible = False
-    Estado.Caption = "Ingrese una palabra y presione Jugar"
-    infoNdigit.Caption = ""
-    N = 0
-
-    N1.Visible = False
-    N2.Visible = False
-    N3.Visible = False
-    N4.Visible = False
-    N5.Visible = False
-    N6.Visible = False
-    N7.Visible = False
-    N8.Visible = False
-    N9.Visible = False
-    N10.Visible = False
-    N11.Visible = False
-
+Private Sub playAgain_Click()
+    
+    wordTextBox.Text = ""
+    wordInputFrame.Visible = True
+    playAgain.Visible = False
+    gameInfo.Caption = "Ingrese una palabra y presione Jugar"
+    errors = 0
+    wordViewFrame.Visible = False
+    rope.Visible = False
+    head.Visible = False
+    chest.Visible = False
+    leftArm.Visible = False
+    rightArm.Visible = False
+    leftLeg.Visible = False
+    rightLeg.Visible = False
+    
 End Sub
