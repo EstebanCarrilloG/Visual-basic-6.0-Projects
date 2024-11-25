@@ -243,6 +243,7 @@ Begin VB.Form Juego
          Picture         =   "Juego 05 01 2021.frx":0000
          Stretch         =   -1  'True
          Top             =   4080
+         Visible         =   0   'False
          Width           =   750
       End
       Begin VB.Image redFigs 
@@ -301,21 +302,21 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
-Dim score As Integer
-Dim remainingTime As Integer
-
+Dim score As Integer 'Almacena el puntaje actual
+Dim remainingTime As Integer 'Almacena el tiempo restante
+'Maneja el fin del juego
 Private Sub gameEnd(win As Boolean)
-    score = 0
+    score = 0                           'Setea el puntaje a 0
     enableOrDisable (False)
-    levelOptionsFrame.Enabled = True
-    remmainingTimeTimer.Enabled = False
+    levelOptionsFrame.Enabled = True    'Habilita la seleccion de niveles
+    remmainingTimeTimer.Enabled = False 'Desactiva el temporizador del tiempo restante
     
     Dim i As Integer
     
     For i = 0 To levelOption.Count - 1
-        levelOption(i).Value = False
+        levelOption(i).Value = False     'Des selecciona el option button previamente seleccionado
     Next
-    
+    'Comprueba si el jugador gano o perdio y muesta un Msgbox
     If win Then
         MsgBox "Felicitaciones. Completaste el nivel.", vbExclamation, "Ganaste"
     Else
@@ -324,19 +325,22 @@ Private Sub gameEnd(win As Boolean)
     
 End Sub
 
+'El puntaje aumenta mientras mantengamos el cursor sobre la figura verde y se guarda en la varible score
+'El puntaje se actualiza y se muestra en el caption currentScoreOutput.
+'Si el puntaje del jugador es igual a la meta definida, en el tiempo determinado, el juego finaliza.
 Private Sub greenFig_MouseMove(Button As Integer, Shift As Integer, x As Single, Y As Single)
     score = score + 1
     currentScoreOutput.Caption = score
     If score = targetScoreOutput Then gameEnd (True)
 End Sub
-
+'El puntaje se resta mientras mantengamos el cursor sobre la o las figuras rojas y se guarda en la varible score
+'El puntaje se actualiza y se muestra en el caption currentScoreOutput.
 Private Sub redFigs_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, Y As Single)
     score = score - 1
     currentScoreOutput.Caption = score
 End Sub
 
-
-
+'Inicia el juego
 Private Sub playButton_Click()
     
     enableOrDisable (True)
@@ -346,6 +350,7 @@ Private Sub playButton_Click()
     
 End Sub
 
+'Maneja la seleccion de nivel
 Private Sub levelOption_Click(Index As Integer)
     Dim result As Integer
     Select Case Index
@@ -354,33 +359,37 @@ Private Sub levelOption_Click(Index As Integer)
     Case 1
         result = setGameConfigs(50, 700, 600, False)
     Case 2
-        redFigs(1).Visible = True
         result = setGameConfigs(40, 1000, 500, True)
     End Select
 End Sub
 
+'Dependiendo del nivel seleccionado se establece:
+'@param time: Limite de tiempo
+'@param targetScore: Limite de puntos
+'@param timerInterval: El tiempo de intervalo de movimiento de las figuras
+'@param addFigure: Se añade una nueva figura
 Private Function setGameConfigs(ByVal time As Integer, ByVal targetScore As Integer, ByVal timerInterval As Integer, addFigure As Boolean)
-    timeOutput = time
-    targetScoreOutput = targetScore
-    figuresMovementTimer.Interval = timerInterval
-    playButton.Enabled = True
-    currentScoreOutput = 0
-    remainingTime = time
-    
+    timeOutput = time                               'Limite de tiempo para el temporizador
+    targetScoreOutput = targetScore                 'Puntaje a alcanzar
+    figuresMovementTimer.Interval = timerInterval   'Activa movimiento de las figuras
+    playButton.Enabled = True                       'Habilita el boton para iniciar el juego
+    currentScoreOutput = 0                          'Setea el puntaje actua a 0
+    remainingTime = time                            'Muestra el limite de tiempo
+    redFigs(1).Visible = addFigure                  'Muesta una nueva figura dependiendo del valor de la variable addFigure
 End Function
-
+'Salir del juego
 Private Sub salir_Click()
     End
     
 End Sub
-
+'Temporizador para figuras en movimiento
 Private Sub figuresMovementTimer_Timer()
     
-    greenFig.Top = setRandomPositionX(100)
-    greenFig.Left = setRandomPositionY(3)
+    greenFig.Top = setRandomPositionX(100) 'Establece la posicion de la figura verde en el eje y
+    greenFig.Left = setRandomPositionY(3)  'Establece la posicion de la figura verde en el eje x
     
     Dim i As Integer
-    
+    'Establece la posicion de las figuras rojas
     For i = 0 To redFigs.Count - 1
         redFigs(i).Top = setRandomPositionX(100)
         redFigs(i).Left = setRandomPositionY(6)
@@ -388,24 +397,24 @@ Private Sub figuresMovementTimer_Timer()
     Next
     
 End Sub
-
+'Retorna un numero aleatorio
 Public Function setRandomPositionX(x As Integer) As Integer
     
     setRandomPositionX = Int(CLng(x - 4200) * Rnd + 4200)
     
 End Function
-
+'Retorna un numero aleatorio
 Public Function setRandomPositionY(x As Integer) As Integer
     
     setRandomPositionY = (CLng(x - 9480) * Rnd + 9480)
     
 End Function
-
+'Temporizador que maneja el tiempo restante
 Private Sub remmainingTimeTimer_Timer()
     
     remainingTime = remainingTime - 1
-    timeOutput.Caption = remainingTime
-    
+    timeOutput.Caption = remainingTime  'Muestra el tiempo restante en un label
+    'Si el tiempo llega a 0 significa que no se ha alcanzado el limite de puntos definido
     If remainingTime = 0 Then
         enableOrDisable (False)
         gameEnd (False)
@@ -414,11 +423,12 @@ Private Sub remmainingTimeTimer_Timer()
     
 End Sub
 
+''Se activan o desactivan elementos del formulario
 Private Sub enableOrDisable(state As Boolean)
     
-    remmainingTimeTimer.Enabled = state
-    figuresMovementTimer.Enabled = state
-    gameFrame.Enabled = state
-    infoLabel.Visible = Not state
+    remmainingTimeTimer.Enabled = state  'Temporizador del tiempo restante
+    figuresMovementTimer.Enabled = state 'Temporizador que maneja el movimiento de las figuras
+    gameFrame.Enabled = state            'Frame en donde se lleva a cabo el movimiento de las figuras
+    infoLabel.Visible = Not state        'Label de información
       
 End Sub
