@@ -2,98 +2,14 @@ VERSION 5.00
 Begin VB.Form Form1 
    BackColor       =   &H00FFFFFF&
    Caption         =   "Juego de esquivar objetos"
-   ClientHeight    =   4950
+   ClientHeight    =   4935
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   4845
+   ClientWidth     =   4830
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4950
-   ScaleWidth      =   4845
+   ScaleHeight     =   4935
+   ScaleWidth      =   4830
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Frame info 
-      Height          =   1815
-      Left            =   840
-      TabIndex        =   11
-      Top             =   1560
-      Visible         =   0   'False
-      Width           =   3135
-      Begin VB.CommandButton Cerrar 
-         Caption         =   "Cerrar"
-         Height          =   375
-         Left            =   240
-         TabIndex        =   17
-         Top             =   1320
-         Width           =   2655
-      End
-      Begin VB.Label pm 
-         Caption         =   "0"
-         Height          =   255
-         Left            =   1080
-         TabIndex        =   16
-         Top             =   960
-         Width           =   855
-      End
-      Begin VB.Label pf 
-         Caption         =   "0"
-         Height          =   255
-         Left            =   1800
-         TabIndex        =   15
-         Top             =   600
-         Width           =   855
-      End
-      Begin VB.Label Label4 
-         Caption         =   "RECORD:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   120
-         TabIndex        =   14
-         Top             =   960
-         Width           =   855
-      End
-      Begin VB.Label Label3 
-         Caption         =   "TU PUNTUACION:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   120
-         TabIndex        =   13
-         Top             =   600
-         Width           =   1935
-      End
-      Begin VB.Label Label2 
-         Alignment       =   2  'Center
-         Caption         =   "FIN DEL JUEGO"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   120
-         TabIndex        =   12
-         Top             =   240
-         Width           =   2895
-      End
-   End
    Begin VB.Frame Frame2 
       Caption         =   "Puntuación"
       BeginProperty Font 
@@ -110,7 +26,7 @@ Begin VB.Form Form1
       TabIndex        =   3
       Top             =   0
       Width           =   4815
-      Begin VB.Label pmg 
+      Begin VB.Label recordScoreLabel 
          Caption         =   "0"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -123,9 +39,9 @@ Begin VB.Form Form1
          EndProperty
          Height          =   375
          Left            =   3960
-         TabIndex        =   19
+         TabIndex        =   12
          Top             =   240
-         Width           =   735
+         Width           =   615
       End
       Begin VB.Label Label5 
          Caption         =   "RECORD:"
@@ -140,11 +56,11 @@ Begin VB.Form Form1
          EndProperty
          Height          =   375
          Left            =   2520
-         TabIndex        =   18
+         TabIndex        =   11
          Top             =   240
          Width           =   1455
       End
-      Begin VB.Label p 
+      Begin VB.Label currentScoreLabel 
          Caption         =   "0"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -176,7 +92,7 @@ Begin VB.Form Form1
          Left            =   120
          TabIndex        =   9
          Top             =   240
-         Width           =   1455
+         Width           =   1335
       End
    End
    Begin VB.Frame Frame1 
@@ -185,7 +101,7 @@ Begin VB.Form Form1
       TabIndex        =   2
       Top             =   4200
       Width           =   4815
-      Begin VB.CommandButton Command1 
+      Begin VB.CommandButton exitButton 
          Caption         =   "SALIR"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -202,7 +118,7 @@ Begin VB.Form Form1
          Top             =   240
          Width           =   2295
       End
-      Begin VB.CommandButton Jugar 
+      Begin VB.CommandButton playButton 
          Caption         =   "JUGAR"
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -220,18 +136,18 @@ Begin VB.Form Form1
          Width           =   2295
       End
    End
-   Begin VB.Timer global 
+   Begin VB.Timer globalTimer 
       Interval        =   1
-      Left            =   1320
-      Top             =   4200
+      Left            =   6840
+      Top             =   4680
    End
-   Begin VB.Timer mov1 
+   Begin VB.Timer fallingFiguresTimer 
       Enabled         =   0   'False
       Interval        =   10
-      Left            =   840
-      Top             =   4200
+      Left            =   6360
+      Top             =   4680
    End
-   Begin VB.PictureBox figG1 
+   Begin VB.PictureBox mainFigure 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
       BackColor       =   &H80000005&
@@ -247,7 +163,55 @@ Begin VB.Form Form1
       Top             =   3840
       Width           =   300
    End
-   Begin VB.PictureBox figB1 
+   Begin VB.PictureBox fallingFigure 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   300
+      Index           =   2
+      Left            =   4080
+      Picture         =   "esquivarObjetos.frx":041B
+      ScaleHeight     =   300
+      ScaleWidth      =   300
+      TabIndex        =   5
+      Top             =   0
+      Width           =   300
+   End
+   Begin VB.PictureBox fallingFigure 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   300
+      Index           =   3
+      Left            =   2880
+      Picture         =   "esquivarObjetos.frx":07D1
+      ScaleHeight     =   300
+      ScaleWidth      =   300
+      TabIndex        =   6
+      Top             =   0
+      Width           =   300
+   End
+   Begin VB.PictureBox fallingFigure 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   300
+      Index           =   1
+      Left            =   1680
+      Picture         =   "esquivarObjetos.frx":0B87
+      ScaleHeight     =   300
+      ScaleWidth      =   300
+      TabIndex        =   4
+      Top             =   0
+      Width           =   300
+   End
+   Begin VB.PictureBox fallingFigure 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
       BackColor       =   &H80000005&
@@ -256,60 +220,33 @@ Begin VB.Form Form1
       Height          =   300
       Index           =   0
       Left            =   600
-      Picture         =   "esquivarObjetos.frx":041B
-      ScaleHeight     =   300
-      ScaleWidth      =   300
-      TabIndex        =   1
-      Top             =   2880
-      Width           =   300
-   End
-   Begin VB.PictureBox figB1 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      BorderStyle     =   0  'None
-      ForeColor       =   &H80000008&
-      Height          =   300
-      Index           =   3
-      Left            =   1680
-      Picture         =   "esquivarObjetos.frx":07D1
-      ScaleHeight     =   300
-      ScaleWidth      =   300
-      TabIndex        =   6
-      Top             =   2880
-      Width           =   300
-   End
-   Begin VB.PictureBox figB1 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      BorderStyle     =   0  'None
-      ForeColor       =   &H80000008&
-      Height          =   300
-      Index           =   1
-      Left            =   2400
-      Picture         =   "esquivarObjetos.frx":0B87
-      ScaleHeight     =   300
-      ScaleWidth      =   300
-      TabIndex        =   4
-      Top             =   2880
-      Width           =   300
-   End
-   Begin VB.PictureBox figB1 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      BorderStyle     =   0  'None
-      ForeColor       =   &H80000008&
-      Height          =   300
-      Index           =   2
-      Left            =   3480
       Picture         =   "esquivarObjetos.frx":0F3D
       ScaleHeight     =   300
       ScaleWidth      =   300
-      TabIndex        =   5
-      Top             =   2880
+      TabIndex        =   1
+      Top             =   0
       Width           =   300
+   End
+   Begin VB.Label gameEndLabel 
+      Alignment       =   2  'Center
+      AutoSize        =   -1  'True
+      BackColor       =   &H8000000B&
+      Caption         =   "Fin del juego"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   24
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   555
+      Left            =   600
+      TabIndex        =   13
+      Top             =   2040
+      Visible         =   0   'False
+      Width           =   3615
    End
    Begin VB.Shape Shape4 
       BackStyle       =   1  'Opaque
@@ -346,174 +283,132 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim velMov As Integer
-Dim X As Integer
-Dim pos(4) As Integer
-Dim puntaje As Integer
-Dim pmax As Integer
+Dim mainFigureSpeed As Integer          'Velocidad de la figura principal
+Dim fallingFigurePosition(4) As Integer 'Posiciones iniciales de las figuras que caen
+Dim score As Integer                    'Almacena el puntaje actual
+Dim recordScore As Integer              'Almacena el puntaje mas alto
 
-Private Sub Cerrar_Click()
-info.Visible = False
-Jugar.Enabled = True
-puntaje = 0
+'Finaliza el programa
+Private Sub exitButton_Click()
+    End
 End Sub
 
-Private Sub Command1_Click()
-End
-End Sub
-
-Private Sub figG1_KeyDown(KeyCode As Integer, Shift As Integer)
-
-    
+'Controla el movimiento de la figura principal de derecha a izquierda
+Private Sub mainFigure_KeyDown(KeyCode As Integer, Shift As Integer)
+    'Tecla de direccion izquierda
     If (KeyCode = vbKeyLeft) Then
-        figG1.Left = figG1.Left - velMov
+        mainFigure.Left = mainFigure.Left - mainFigureSpeed
     End If
-    
+    'Tecla de direccion derecha
     If (KeyCode = vbKeyRight) Then
-        figG1.Left = figG1.Left + velMov
+        mainFigure.Left = mainFigure.Left + mainFigureSpeed
     End If
-
-
-
 End Sub
-
+'Carga inicial del formulario
 Private Sub Form_Load()
-pmax = 0
-velMov = 200
-pos(0) = -2500
-pos(1) = -2000
-pos(2) = -4500
-pos(3) = -7500
-
-
-figB1(0).Top = pos(0)
-figB1(1).Top = pos(1)
-figB1(2).Top = pos(2)
-figB1(3).Top = pos(3)
-
-
-
+    recordScore = 0
+    mainFigureSpeed = 200
 End Sub
-
-Private Sub colision()
-
-    If ((figG1.Left < figB1(X).Left + figB1(X).Width) And (figB1(X).Left < figG1.Left + figG1.Width) And (figG1.Top < figB1(X).Top + figB1(X).Height) And (figB1(X).Top < figG1.Top + figG1.Height)) Then
-        
-        If puntaje >= pmax Then
+'Maneja la colision de los objetos
+Private Sub handleColision(i As Integer)
+    'Es true si el objeto principal colisiona con cualquier objeto que cae
+    If ((mainFigure.Left < fallingFigure(i).Left + fallingFigure(i).Width) And (fallingFigure(i).Left < mainFigure.Left + mainFigure.Width) And (mainFigure.Top < fallingFigure(i).Top + fallingFigure(i).Height) And (fallingFigure(i).Top < mainFigure.Top + mainFigure.Height)) Then
+        'Comprueba si el puntaje actual es mayor que el puntaje mas alto obtenido
+        If score > recordScore Then
             
-            pmax = puntaje
-            pm.Caption = pmax
-            MsgBox "Felicitaciones, superaste la puntuación mas alta"
+            recordScore = score
+            recordScoreLabel.Caption = recordScore 'Actualiza el label del puntaje mas alto
+            MsgBox "Felicitaciones, superaste la puntuación mas alta" 'Muestra un Msgbox
         
         End If
-        
-        figG1.Enabled = False
-        pf.Caption = puntaje
-    
-        info.Visible = True
-        
-        figB1(0).Top = pos(0)
-        figB1(1).Top = pos(1)
-        figB1(2).Top = pos(2)
-        figB1(3).Top = pos(3)
-
-        figG1.Left = 2280
-        mov1.Enabled = False
+        enableOrDisable (False) 'Desabilita o habilita elementos del formulario
+        playButton.SetFocus
 
     End If
     
 End Sub
 
-Private Sub Frame4_DragDrop(Source As Control, X As Single, Y As Single)
+'Evita que la figura principal se salga del marco definido
+Private Sub globalTimer_Timer()
 
+    If (mainFigure.Left <= 360) Then
+        mainFigure.Left = 360
+    End If
+    
+    If (mainFigure.Left >= 4200) Then
+        mainFigure.Left = 4200
+    End If
+    
+    Dim i As Integer
+    
+    
+    For i = 0 To fallingFigure.Count - 1
+        handleColision (i)
+    Next
+    
+    currentScoreLabel.Caption = score 'Muesta el valor del puntaje actual
+    
 End Sub
 
-Private Sub global_Timer()
+Private Sub playButton_Click()
+    score = 0                             'Setea el puntaje a 0
+    setFallingFiguresPositions            'Figuras que caen en su posicion inicial
+    mainFigure.Left = 2280                'Posicion inicial de la figura principal
+    playButton.Caption = "Volver a jugar" 'Cambia el texto del boton play
+    enableOrDisable (True)                'Habilita o desabilita elementos del formulario
 
-    If (figG1.Left <= 360) Then
-        figG1.Left = 360
-    End If
-    
-    If (figG1.Left >= 4200) Then
-        figG1.Left = 4200
-    End If
-    
-    If (figG1.Top <= 480) Then
-        figG1.Top = 480
-    End If
-    
-    If (figG1.Top >= 6720) Then
-        figG1.Top = 6720
-    End If
-    
-    colision
-    
-    X = X + 1
-    
-    If X = 4 Then
-    X = 0
-    End If
-    
-    p.Caption = puntaje
-    pmg.Caption = pmax
-    
-    
-    
-
+    mainFigure.SetFocus                   'Pone el focus en la figura principal
 End Sub
 
-Private Sub Jugar_Click()
+'Temporizador que controla el movimiento de caida de las figuras
+Private Sub fallingFiguresTimer_Timer()
+    Dim i As Integer
+    
+    For i = 0 To fallingFigure.Count - 1
+    
+        fallingFigure(i).Top = fallingFigure(i).Top + 50
+    
+        If fallingFigure(i).Top >= 4320 Then 'Si la figura sobrepasa el limite establecido
+            fallingFigure(i).Top = -20       'Envia a la figura a la parte superior
+            fallingFigure(i).Left = getRandomNumber(360, 4080) 'Coloca al la figura en una posicion aleatoria horizontalmente
+            score = score + 1 'Se añade un punto + 1
+        End If
+    Next
+    
+End Sub
+'Retorna un numero aleatoreo
+Public Function getRandomNumber(min As Integer, Optional max As Integer) As Integer
+    
+    getRandomNumber = (CLng(min - max) * Rnd + max)
+    
+End Function
+'Setea las posiciones iniciales de las figuras que caen
+Private Sub setFallingFiguresPositions()
 
-mov1.Enabled = True
-Jugar.Enabled = False
-figG1.Enabled = True
-figG1.SetFocus
+    'Posiciones iniciales aleatorias para el eje vertical
+    fallingFigurePosition(0) = getRandomNumber(-2500)
+    fallingFigurePosition(1) = getRandomNumber(-2000)
+    fallingFigurePosition(2) = getRandomNumber(-4500)
+    fallingFigurePosition(3) = getRandomNumber(-7500)
+
+    Dim i As Integer
+    
+    For i = 0 To fallingFigure.Count - 1
+        fallingFigure(i).Top = fallingFigurePosition(i)    'Coloca las figuras en sus posiciones iniciales
+        fallingFigure(i).Left = getRandomNumber(360, 4080) 'Posiciones iniciales aleatorias para el eje horizontal dentro de un rango determinado
+    Next
+
 
 End Sub
+'Habilita o desabilita componentes del formulario
+Private Sub enableOrDisable(state As Boolean)
+    fallingFiguresTimer.Enabled = state 'Temporizador que controla caida de las figuras
+    globalTimer.Enabled = state         'Temporizador que maneja las colisiones y limites de desplazamiento de la figura principal
+    playButton.Enabled = Not state      'Boton de inicio del juego
+    mainFigure.Enabled = state          'Estado de la figura principal
+    gameEndLabel.Visible = Not state    'Label que se muesta al finalizar el juego
 
-Private Sub mov1_Timer()
-
-    figB1(0).Top = figB1(0).Top + 50
-    
-    If figB1(0).Top >= 4320 Then
-    PosfigB1 = (CLng(360 - 4080) * Rnd + 4080)
-    figB1(0).Top = 0
-    figB1(0).Left = PosfigB1
-    puntaje = puntaje + 1
-        
-    End If
-       
-       figB1(1).Top = figB1(1).Top + 50
-    
-    If figB1(1).Top >= 4320 Then
-    PosfigB1 = (CLng(360 - 4080) * Rnd + 4080)
-    figB1(1).Top = -20
-    figB1(1).Left = PosfigB1
-     puntaje = puntaje + 1
-        
-    End If
-    
-      figB1(2).Top = figB1(2).Top + 50
-    
-    If figB1(2).Top >= 4320 Then
-    PosfigB1 = (CLng(360 - 4080) * Rnd + 4080)
-    figB1(2).Top = -20
-    figB1(2).Left = PosfigB1
-     puntaje = puntaje + 1
-        
-    End If
-    
-      figB1(3).Top = figB1(3).Top + 50
-    
-    If figB1(3).Top >= 4320 Then
-    PosfigB1 = (CLng(360 - 4080) * Rnd + 4080)
-    figB1(3).Top = -20
-    figB1(3).Left = PosfigB1
-     puntaje = puntaje + 1
-        
-    End If
 End Sub
-
 
 
 
