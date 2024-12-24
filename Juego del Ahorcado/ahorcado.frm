@@ -5,10 +5,10 @@ Begin VB.Form Form1
    ClientHeight    =   7200
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   5775
+   ClientWidth     =   7785
    LinkTopic       =   "Form1"
    ScaleHeight     =   7200
-   ScaleWidth      =   5775
+   ScaleWidth      =   7785
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame2 
       BackColor       =   &H00E0E0E0&
@@ -26,7 +26,7 @@ Begin VB.Form Form1
       Left            =   240
       TabIndex        =   20
       Top             =   1440
-      Width           =   5295
+      Width           =   7335
       Begin VB.CommandButton playAgain 
          Caption         =   "VOLVER A JUGAR"
          BeginProperty Font 
@@ -43,7 +43,7 @@ Begin VB.Form Form1
          TabIndex        =   22
          Top             =   480
          Visible         =   0   'False
-         Width           =   5055
+         Width           =   7095
       End
       Begin VB.Label gameInfo 
          BackColor       =   &H00FFFFFF&
@@ -61,7 +61,7 @@ Begin VB.Form Form1
          Left            =   120
          TabIndex        =   21
          Top             =   240
-         Width           =   5055
+         Width           =   7095
       End
    End
    Begin VB.Frame wordInputFrame 
@@ -80,7 +80,7 @@ Begin VB.Form Form1
       Left            =   240
       TabIndex        =   17
       Top             =   360
-      Width           =   5295
+      Width           =   7335
       Begin VB.TextBox wordTextBox 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -95,7 +95,7 @@ Begin VB.Form Form1
          Left            =   120
          TabIndex        =   19
          Top             =   360
-         Width           =   3735
+         Width           =   5775
       End
       Begin VB.CommandButton play 
          BackColor       =   &H00FFFFFF&
@@ -110,7 +110,7 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          Height          =   615
-         Left            =   3960
+         Left            =   6000
          Style           =   1  'Graphical
          TabIndex        =   18
          Top             =   360
@@ -134,13 +134,13 @@ Begin VB.Form Form1
       Style           =   1  'Graphical
       TabIndex        =   16
       Top             =   6360
-      Width           =   5295
+      Width           =   7335
    End
    Begin VB.Timer gameTimer 
       Enabled         =   0   'False
       Interval        =   500
-      Left            =   5880
-      Top             =   6480
+      Left            =   8040
+      Top             =   6360
    End
    Begin VB.Frame wordViewFrame 
       BackColor       =   &H00E0E0E0&
@@ -158,7 +158,112 @@ Begin VB.Form Form1
       Left            =   240
       TabIndex        =   1
       Top             =   360
-      Width           =   5295
+      Width           =   7335
+      Begin VB.TextBox letterContainer 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   465
+         Index           =   18
+         Left            =   6600
+         TabIndex        =   27
+         Top             =   360
+         Visible         =   0   'False
+         Width           =   375
+      End
+      Begin VB.TextBox letterContainer 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   465
+         Index           =   17
+         Left            =   6240
+         TabIndex        =   26
+         Top             =   360
+         Visible         =   0   'False
+         Width           =   375
+      End
+      Begin VB.TextBox letterContainer 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   465
+         Index           =   16
+         Left            =   5880
+         TabIndex        =   25
+         Top             =   360
+         Visible         =   0   'False
+         Width           =   375
+      End
+      Begin VB.TextBox letterContainer 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   465
+         Index           =   15
+         Left            =   5520
+         TabIndex        =   24
+         Top             =   360
+         Visible         =   0   'False
+         Width           =   375
+      End
+      Begin VB.TextBox letterContainer 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   18
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   465
+         Index           =   14
+         Left            =   5160
+         TabIndex        =   23
+         Top             =   360
+         Visible         =   0   'False
+         Width           =   375
+      End
       Begin VB.TextBox letterContainer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -470,38 +575,7 @@ Begin VB.Form Form1
       Left            =   240
       TabIndex        =   0
       Top             =   2280
-      Width           =   5295
-      Begin VB.Shape N5 
-         BorderColor     =   &H000000FF&
-         FillColor       =   &H000000FF&
-         FillStyle       =   0  'Solid
-         Height          =   135
-         Left            =   4080
-         Shape           =   2  'Oval
-         Top             =   1560
-         Visible         =   0   'False
-         Width           =   255
-      End
-      Begin VB.Shape N4 
-         FillColor       =   &H00FFFFFF&
-         FillStyle       =   0  'Solid
-         Height          =   255
-         Left            =   4320
-         Shape           =   3  'Circle
-         Top             =   1320
-         Visible         =   0   'False
-         Width           =   135
-      End
-      Begin VB.Shape N3 
-         FillColor       =   &H00FFFFFF&
-         FillStyle       =   0  'Solid
-         Height          =   255
-         Left            =   3960
-         Shape           =   3  'Circle
-         Top             =   1320
-         Visible         =   0   'False
-         Width           =   135
-      End
+      Width           =   7335
       Begin VB.Line rightLeg 
          BorderWidth     =   10
          Visible         =   0   'False
@@ -554,8 +628,8 @@ Begin VB.Form Form1
       End
       Begin VB.Line Line1 
          BorderWidth     =   15
-         X1              =   2280
-         X2              =   1320
+         X1              =   2160
+         X2              =   1200
          Y1              =   720
          Y2              =   1560
       End
@@ -595,7 +669,7 @@ Begin VB.Form Form1
       Height          =   6855
       Left            =   120
       Top             =   240
-      Width           =   5535
+      Width           =   7575
    End
 End
 Attribute VB_Name = "Form1"
@@ -632,7 +706,7 @@ End Sub
 
 Private Sub Form_Load()
     
-    gameInfo.Caption = "Ingrese una palabra y presione Jugar"
+    showMessage ("Ingrese una palabra y presione Jugar")
     
 End Sub
 
@@ -640,7 +714,12 @@ Private Sub gameTimer_Timer()
     
     letterInput = InputBox("Ingrese una letra.", "Ingreso", "", 0, 0)
     
+    isLetterInWord = False
+    
     If letterInput <> "" Then
+    
+       
+        
         For i = 1 To wordLength
             
             letterInWord = Mid(word, i, 1)
@@ -648,16 +727,14 @@ Private Sub gameTimer_Timer()
             If UCase(letterInput) = UCase(letterInWord) Then
                 
                 isLetterInWord = True
-                gameInfo.Caption = "Letra correcta: " & letterInput
+                showMessage ("Letra correcta: " & letterInput)
                 
                 Select Case i
                     
                     Case i
                         letterContainer(i - 1).Text = UCase(letterInput)
                 End Select
-                
-            Else
-                isLetterInWord = False
+                   
             End If
             
         Next
@@ -665,7 +742,10 @@ Private Sub gameTimer_Timer()
         If isLetterInWord = False Then
             
             errors = errors + 1
-            gameInfo.Caption = "Letra incorrecta: " & letterInput
+            showMessage ("Letra incorrecta: " & letterInput)
+            If Len(letterInput) > 1 Then
+                checkWord (letterInput)
+            End If
             
             Select Case errors
                 
@@ -688,7 +768,7 @@ Private Sub gameTimer_Timer()
         End If
         
     Else
-        gameInfo.Caption = "Error: Ingrese una letra"
+        showMessage ("Error: Ingrese una letra")
         
     End If
     
@@ -706,7 +786,7 @@ Private Sub gameTimer_Timer()
         
         gameTimer.Enabled = False
         MsgBox "Felicidades, ganaste!!!"
-        gameInfo.Caption = "Ganador!!"
+        showMessage ("Ganador!!")
         word = ""
         playAgain.Visible = True
         
@@ -715,7 +795,7 @@ Private Sub gameTimer_Timer()
     If errors = 6 Then
         gameTimer.Enabled = False
         MsgBox "Perdiste"
-        gameInfo.Caption = "La palabra era: " & word
+        showMessage ("La palabra era: " & word)
         word = ""
         playAgain.Visible = True
     End If
@@ -729,7 +809,7 @@ End Sub
 
 Private Sub play_Click()
     
-    For i = 0 To 13
+    For i = 0 To letterContainer.Count - 1
         letterContainer(i).Text = ""
     Next i
     
@@ -738,20 +818,20 @@ Private Sub play_Click()
     
     If (word = "") Then
         
-        gameInfo.Caption = "Error: Ingrese una palabra."
+        showMessage ("Error: Ingrese una palabra.")
         
     Else
         
         If (wordLength < 4) Then
-            gameInfo.Caption = "Error: Palabra muy corta"
-        ElseIf wordLength > 13 Then
-            gameInfo.Caption = "Error: Superaste el numero de letras permitidas"
+            showMessage ("Error: Palabra muy corta")
+        ElseIf wordLength > letterContainer.Count - 1 Then
+            showMessage ("Error: Superaste el numero de letras permitidas")
             wordLength = 0
         Else
             
             wordInputFrame.Visible = False
             wordViewFrame.Visible = True
-            gameInfo.Caption = "Comienza el juego!"
+            showMessage ("Comienza el juego!")
             gameTimer.Enabled = True
             
             For i = 0 To wordLength - 1
@@ -768,7 +848,7 @@ Private Sub playAgain_Click()
     wordTextBox.Text = ""
     wordInputFrame.Visible = True
     playAgain.Visible = False
-    gameInfo.Caption = "Ingrese una palabra y presione Jugar"
+    showMessage ("Ingrese una palabra y presione Jugar")
     errors = 0
     wordViewFrame.Visible = False
     rope.Visible = False
@@ -780,3 +860,24 @@ Private Sub playAgain_Click()
     rightLeg.Visible = False
     
 End Sub
+
+Private Function checkWord(letterInput As String)
+    If UCase(word) = UCase(letterInput) Then
+           
+        Dim i As Integer
+        Dim letterInWord As String
+    
+        For i = 1 To Len(letterInput)
+            letterInWord = Mid(letterInput, i, 1)
+            letterContainer(i - 1).Text = UCase(letterInWord)
+        Next i
+        
+    Else
+          showMessage ("Palabra incorrecta")
+        
+    End If
+End Function
+
+Private Function showMessage(message As String)
+    gameInfo.Caption = message
+End Function
