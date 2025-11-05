@@ -15,25 +15,19 @@ Begin VB.Form Form1
       Left            =   1320
       Top             =   6480
    End
-   Begin VB.Timer mov1 
-      Enabled         =   0   'False
+   Begin VB.Timer temporizadorGlobal 
       Interval        =   10
       Left            =   840
       Top             =   6480
    End
-   Begin VB.Timer mov2 
-      Interval        =   10
-      Left            =   360
-      Top             =   6480
-   End
-   Begin VB.PictureBox figB1 
+   Begin VB.PictureBox figuraVerde 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
       BackColor       =   &H80000005&
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
       Height          =   300
-      Left            =   2400
+      Left            =   480
       Picture         =   "colision.frx":0000
       ScaleHeight     =   300
       ScaleWidth      =   300
@@ -41,7 +35,7 @@ Begin VB.Form Form1
       Top             =   3360
       Width           =   300
    End
-   Begin VB.PictureBox figG1 
+   Begin VB.PictureBox figuraPloma 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
       BackColor       =   &H80000005&
@@ -91,90 +85,81 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim velMov As Integer
-Private Sub figG1_KeyDown(KeyCode As Integer, Shift As Integer)
+Dim direccion As String
 
 
+Private Sub figuraPloma_KeyDown(KeyCode As Integer, Shift As Integer)
+
+    'Mover la figura ploma con las teclas de direccion
     If (KeyCode = vbKeyDown) Then
-        figG1.Top = figG1.Top + velMov
+        figuraPloma.Top = figuraPloma.Top + velMov
     End If
     
     If (KeyCode = vbKeyUp) Then
-        figG1.Top = figG1.Top - velMov
+        figuraPloma.Top = figuraPloma.Top - velMov
     End If
     
     If (KeyCode = vbKeyLeft) Then
-        figG1.Left = figG1.Left - velMov
+        figuraPloma.Left = figuraPloma.Left - velMov
     End If
     
     If (KeyCode = vbKeyRight) Then
-        figG1.Left = figG1.Left + velMov
+        figuraPloma.Left = figuraPloma.Left + velMov
     End If
-
-
 
 End Sub
 
 Private Sub Form_Load()
 
-velMov = 100
+    velMov = 1000 'Velocidad de desplazamiento de la figura ploma
+    direccion = "derecha" 'Direccion inicial de movimiento figura verde
 
 End Sub
 
-Private Sub colision()
+Private Sub detectarColision()
 
-    If ((figG1.Left < figB1.Left + figB1.Width) And (figB1.Left < figG1.Left + figG1.Width) And (figG1.Top < figB1.Top + figB1.Height) And (figB1.Top < figG1.Top + figG1.Height)) Then
-    
+    If ((figuraPloma.Left < figuraVerde.Left + figuraVerde.Width) And (figuraVerde.Left < figuraPloma.Left + figuraPloma.Width) And (figuraPloma.Top < figuraVerde.Top + figuraVerde.Height) And (figuraVerde.Top < figuraPloma.Top + figuraPloma.Height)) Then
+        'Colision entre objetos producida
         MsgBox ("Colisionaste con el objeto")
-        figG1.Top = 480
-
+        figuraPloma.Top = 480
     End If
     
 End Sub
-Private Sub global_Timer()
+Private Sub temporizadorGlobal_Timer()
 
-    If (figG1.Left <= 360) Then
-        figG1.Left = 360
+    'Asegura que la figura ploma no se salga de los limites establecidos
+    If (figuraPloma.Left <= 360) Then
+        figuraPloma.Left = 360
     End If
     
-    If (figG1.Left >= 4200) Then
-        figG1.Left = 4200
+    If (figuraPloma.Left >= 4200) Then
+        figuraPloma.Left = 4200
     End If
     
-    If (figG1.Top <= 480) Then
-        figG1.Top = 480
+    If (figuraPloma.Top <= 480) Then
+        figuraPloma.Top = 480
     End If
     
-    If (figG1.Top >= 6720) Then
-        figG1.Top = 6720
+    If (figuraPloma.Top >= 6720) Then
+        figuraPloma.Top = 6720
     End If
     
-    colision
-
+    'Detectar colision
+    detectarColision
+    
+    'Mover la figura verde de izquierda a derecha y viceversa
+    If direccion = "derecha" Then
+        figuraVerde.Left = figuraVerde.Left + 50
+    ElseIf direccion = "izquierda" Then
+        figuraVerde.Left = figuraVerde.Left - 50
+    End If
+    
+    If figuraVerde.Left >= 4200 Then
+        direccion = "izquierda"
+    End If
+    
+    If figuraVerde.Left <= 360 Then
+       direccion = "derecha"
+    End If
+      
 End Sub
-
-Private Sub mov1_Timer()
-
-    figB1.Left = figB1.Left + 50
-    
-    If figB1.Left >= 4200 Then
-    
-        mov1.Enabled = False
-        mov2.Enabled = True
-        
-    End If
-    
-End Sub
-
-Private Sub mov2_Timer()
-
-    figB1.Left = figB1.Left - 50
-
-    If figB1.Left <= 360 Then
-    
-       mov1.Enabled = True
-       mov2.Enabled = False
-       
-    End If
- 
-End Sub
-
