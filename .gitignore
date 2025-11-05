@@ -1,0 +1,51 @@
+# Visual Basic 6.0 - Git Ignore File
+
+# Archivos del entorno (no necesarios para compilar)
+
+*.vbw
+*.exp
+*.obj
+*.pdb
+*.idb
+*.pch
+*.ncb
+*.aps
+*.opt
+*.suo
+*.user
+
+# Copias de seguridad y temporales
+
+*.bak
+*.tmp
+*.log
+*.old
+*.backup
+~$*
+
+# Archivos de compilación
+
+*.exe
+*.dll
+*.ocx
+*.res
+
+# Archivos de Visual SourceSafe
+
+vssver.scc
+vssver2.scc
+
+# Carpetas de compilación o temporales (por si las hubiera)
+
+bin/
+obj/
+Debug/
+Release/
+
+# Ignorar cualquier archivo .vbw en cualquier carpeta
+*.vbw
+**/*.vbw
+# Archivos generados automáticamente o de entorno local
+
+Thumbs.db
+Desktop.ini
